@@ -12,13 +12,15 @@ class AddTask extends React.Component {
 
   render() {
     return (
-      <form className="task-input form-group" onSubmit={this.onFormSubmit}>
-        <label htmlFor="newTask">Enter New Task</label>
+	<nav class="navbar navbar-light bg-light">
+      <form className="task-input form-group-inline" onSubmit={this.onFormSubmit} id="filterNav" style={{float: 'left'}}>
+        <label htmlFor="newTask">New Task</label>
         <input type="text" className="form-control"
                name="newTask"
                value={this.state.newTask}
                onChange={(e) => this.setState({ newTask: e.target.value })} />
       </form>
+	  </nav>
     );
   }
 }

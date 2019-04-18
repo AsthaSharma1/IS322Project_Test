@@ -4,8 +4,10 @@ const TaskItem = props => {
   return (
     <li className="list-group-item">
       { props.task.title }
-      <span> Type: {props.task.type} |     </span>
-      <span> Status: {props.task.column}  </span>
+	  <span style={{float: 'right', 'padding-left': "10px"}}> Status: {props.task.column}  </span>
+      <span style={{float: 'right', 'padding-left': "10px"}}>|</span>
+	  <span style={{float: 'right'}}> Type: {props.task.type}</span>
+      
       
 
   

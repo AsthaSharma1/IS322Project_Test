@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskItem from './TaskItem';
+import AddTask from './AddTask';
 
 
 class TaskList extends React.Component {
@@ -43,8 +44,10 @@ class TaskList extends React.Component {
       return <TaskItem task={task} key={task.id} markDone={this.markDone} />
 
     });
-      const sort = (<div>
-        <h2>Sort</h2>
+      const sort = (<nav className="navbar navbar-light bg-light">
+	  
+	  <div id="filterNav">
+        <p>Sort</p>
           <select value={this.setState.sort} onChange={(e) => 
         	this.setState({ sort: e.target.value 
         	})}>
@@ -54,7 +57,7 @@ class TaskList extends React.Component {
           <option value="Type">Type</option>
         </select>
   
-        <h3>Status</h3>
+        <p>Status</p>
         <select value={this.setState.status} onChange={(e) => this.setState({ filterA: e.target.value })}>
           <option value="Default">Pick An Option</option>
           <option value="To do">To do</option>
@@ -64,7 +67,7 @@ class TaskList extends React.Component {
         </select>
 
    
-        <h3>Type</h3>
+        <p>Type</p>
         <select value={this.setState.type} onChange={(e) => this.setState({ filterB: e.target.value })}>
           <option value="Default">Pick An Option</option>
           <option value="Task">Task</option>
@@ -72,12 +75,11 @@ class TaskList extends React.Component {
           <option value="Review">Review</option>
           <option value="Done">Done</option>
         </select>
- 
+		<AddTask onSubmit={this.props.onSubmit}/>
       <div>
         <button onClick={this.updateResults}>Results</button>
       </div>
-   
-    </div>);
+    </div></nav>);
 
     return (
 

@@ -6,3 +6,13 @@
 	font-family: Segoe UI;
 	padding: 15px;
 }
+
+#filterNav{
+	display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+	font-size: 15px;
+	font-weight: bold;
+}
+
