@@ -1,27 +1,37 @@
 // import dependencies
 import React from 'react';
-import TaskItem from './TaskItem';
-
+import TaskBItem1 from './TaskBItem1';
+import TaskBItem2 from './TaskBItem2';
+import TaskBItem3 from './TaskBItem3';
+import TaskBItem4 from './TaskBItem4';
 
 
 
 class TaskBoard extends React.Component {
 	
+	constructor(props) {
+        super(props);
+
+        this.state = {
+            FilteredTasks:props.tasks
+        };
+    }
 	// update task list - mark task as done
 	markDone = (task) => {
 		const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
 		let TaskBoard = this.props.tasks;
+		task.column="done";
 		TaskBoard.splice(taskIndex, 1);
 		console.log(this.props);
 		this.props.onUpdateTaskBoard(TaskBoard);
 	}
 
-	markInProgress = (task) => { 
+	markProgress = (task) => { 
 	const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
 		let TaskBoard = this.props.tasks;
 		TaskBoard.splice(taskIndex, 1);
 		console.log(this.props);
-		this.props.onUpdateTaskList(TaskBoard);
+		this.props.onUpdateTaskBoard(TaskBoard);
 	}
 
 	markToDo = (task) => { 
@@ -29,40 +39,40 @@ class TaskBoard extends React.Component {
 		let TaskBoard = this.props.tasks;
 		TaskBoard.splice(taskIndex, 1);
 		console.log(this.props);
-		this.props.onUpdateTaskList(TaskBoard);
+		this.props.onUpdateTaskBoard(TaskBoard);
 	}
 	markReview = (task) => { 
 	const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
 		let TaskBoard = this.props.tasks;
 		TaskBoard.splice(taskIndex, 1);
 		console.log(this.props);
-		this.props.onUpdateTaskList(TaskBoard);
+		this.props.onUpdateTaskBoard(TaskBoard);
 	}
 	
 	// render content
 	render() {
-		const todoItems = this.props.tasks.map(task => {
+		const todoItems= this.props.tasks.map(task => {
 			if(task.column === 'todo') { 
-			return <TaskItem task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress} />
+			return <TaskBItem1 task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress} />
 			} 
 		});
 		
 		const progressItems = this.props.tasks.map(task => {
 			if(task.column === 'in-progress') 
 			{
-			return <TaskItem task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress}/> 
+			return <TaskBItem2 task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress}/> 
 			} 
 		});
 		
 		const reviewItems = this.props.tasks.map(task => {
 			 if(task.column==='review') { 
-			return <TaskItem task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress} />
+			return <TaskBItem3 task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress} />
 			} 
 		});
 
 		const doneItems = this.props.tasks.map(task => {
           	if(task.column==='done') {
-			return <TaskItem task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress}/>
+			return <TaskBItem4 task={task} key={task.id} markToDo={this.markToDo} markDone={this.markDone} markReview={this.markDone} markInProgress={this.markInProgress}/>
 			} 
 		});
 
