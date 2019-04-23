@@ -6,8 +6,6 @@ import AddTask from './AddTask';
 import TaskBoard from './TaskBoard';
 
 
-
-
 class App extends React.Component{
   state={ 
     tasks:[], 
@@ -21,7 +19,9 @@ class App extends React.Component{
     super(props);
     this.state = {
       tasks: [],
-      errorMsg: ''
+      errorMsg: '' 
+ 
+
     }
   }
   
@@ -34,6 +34,8 @@ class App extends React.Component{
     .then(response => {this.setState({ tasks: response.data });})
     .catch(response => {this.setState({ errorMsg: response.message });});
   }
+
+  
   
   // adds new task to task list
   onAddTask = (taskName) => {
@@ -45,9 +47,16 @@ class App extends React.Component{
       column: 'todo'
     });
     this.setState({ tasks });
-  }
+    this.setState({view:"gridView"})
+  }; 
 
   
+ 
+  onUpdateTaskBoard = (newBoard) => {
+    this.setState({tasks: TaskBoard});
+  };
+
+
   // sets task list to new task list when list is updated
   onUpdateTaskList = (newTaskList) => {
     this.setState({tasks: newTaskList});
@@ -57,11 +66,14 @@ class App extends React.Component{
   render(){
     return (
       <div className='container'>
-        <TaskList tasks={this.state.tasks} onUpdateTaskList={this.onUpdateTaskList} onSubmit={this.onAddTask}/>
+      <TaskBoard tasks={this.state.tasks} onUpdateTaskBoard={this.onUpdateTaskBoard} onSubmit={this.onAddTask}/>
+      <TaskList tasks={this.state.tasks} onUpdateTaskList={this.onUpdateTaskList} onSubmit={this.onAddTask}/>
       </div>
     );
   }
 }
+
+
 
 // export component
 export default App;
